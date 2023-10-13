@@ -2,10 +2,8 @@
   hosts: all
   become: yes
   tasks:
-    - name: Installing redis repo
-      ansible.builtin.yum:
-        name: redis
-        state: latest
+    - name: Downloading redis repo
+      ansible.builtin.yum: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 
     - name: Enabling Redis-6.2 from package
       ansible.builtin.service:
