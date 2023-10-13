@@ -9,7 +9,7 @@
 
     - name: Enabling Redis-6.2 from package
       ansible.builtin.service:
-        name: redis:remi-6.2
+        name: remi-6.2
         enabled: yes
 
     - name: Installing redis server
