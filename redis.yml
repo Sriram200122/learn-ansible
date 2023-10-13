@@ -1,37 +1,35 @@
-- name: Creating redis server
+- name: Creating Catalogue server
   hosts: all
   become: yes
   tasks:
-    - name: Installing redis repo
+    - name: Install remi repo
+      ansible.builtin.yum:
+        name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+        state: latest
+        disable_gpg_check: true
+
+    - name: Enable remi module
+      ansible.builtin.shell: yum module enable redis:remi-6.2 -y
+
+    - name: Install redis
       ansible.builtin.yum:
         name: redis
         state: latest
 
-    - name: Enabling Redis-6.2 from package
-      ansible.builtin.service:
-        name: redis:remi-6.2
-        enabled: yes
-
-    - name: Installing redis server
-      ansible.builtin.yum:
-        name: redis
-        state: latest
-
-    - name: Changing the listen address
+    - name: Modyfying Listening address
       ansible.builtin.replace:
         path: /etc/redis.conf
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
 
-    - name: Changing the listen address
+    - name: Modyfying Listening address
       ansible.builtin.replace:
         path: /etc/redis/redis.conf
         regexp: '127.0.0.1'
         replace: '0.0.0.0'
 
-    - name: Enabling and starting the redis server
-      ansible.builtin.service:
-        name: redis
+    - name: Enabling and restarting redis Server
+      ansible.builtin.systemd:
         state: restarted
-        enabled: yes
-
+        name: redis
+        enabled: true
