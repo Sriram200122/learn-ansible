@@ -30,7 +30,6 @@
       args:
        chdir: /app
 
-
     - name: Configuring catalogue service
       ansible.builtin.copy:
         src: catalogue.service
