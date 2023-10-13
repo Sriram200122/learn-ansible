@@ -7,11 +7,6 @@
         name: redis
         state: latest
 
-    - name: Enabling Redis-6.2 from package
-      ansible.builtin.service:
-        name: remi-6.2
-        enabled: yes
-
     - name: Installing redis server
       ansible.builtin.yum:
         name: redis
