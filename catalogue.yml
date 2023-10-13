@@ -47,7 +47,7 @@
         state: latest
 
     - name: Loading Mongo Schema
-      ansible.builtin.shell: mongo --host mongodb-dev.munukutla.online
+      ansible.builtin.shell: mongo --host mongodb-dev.munukutla.online </app/schema/catalogue.js
 
     - name: Enabling and starting the catalogue server
       ansible.builtin.service:
