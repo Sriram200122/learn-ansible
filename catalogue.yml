@@ -26,9 +26,9 @@
         remote_src: yes
 
     - name: Installing npm
-      ansible.builtin.shell:npm install
+      ansible.builtin.shell: npm install
       args:
-        chdir: /app
+       chdir: /app
 
 
     - name: Configuring catalogue service
