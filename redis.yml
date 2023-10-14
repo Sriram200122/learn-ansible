@@ -14,8 +14,6 @@
     - name: Enable remi module
       ansible.builtin.shell: yum module enable redis:remi-6.2 -y
 
-
-
     - name: Install redis
       ansible.builtin.yum:
         name: redis
