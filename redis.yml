@@ -1,4 +1,4 @@
-- name: Creating Catalogue server
+- name: Creating Redis server
   hosts: all
   become: yes
   tasks:
