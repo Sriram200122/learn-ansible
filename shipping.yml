@@ -39,7 +39,7 @@
 
     - name: Installing mysql schema
       ansible.builtin.yum:
-        name: yum install mysql -y
+        name: yum install mysql
         state: latest
 
     - name: Loading mysql Schema
