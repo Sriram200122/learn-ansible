@@ -12,7 +12,7 @@
       ansible.builtin.yum:
         name:
          - erlang
-         - rabbitmq-server
+         - rabbitmq
         state: installed
 
     - name: Start RabbitMQ Service
