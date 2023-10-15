@@ -11,6 +11,7 @@
     - name: Installing erlang
       ansible.builtin.yum:
         name: erlang
+        state: installed
 
     - name: Installing rabbitmq
       ansible.builtin.yum:
