@@ -10,7 +10,7 @@
 
     - name: Installing rabbitmq server
       ansible.builtin.yum:
-        name: rabbitmq
+        name: rabbitmq-server -y
         state: latest
 
     - name: Enabling and restarting rabbitmq Server
