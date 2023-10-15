@@ -10,13 +10,13 @@
 
     - name: Installing rabbitmq-server
       ansible.builtin.yum:
-        name: rabbitmq-server
+        name: rabbitmq
         state: latest
 
     - name: Enabling and restarting rabbitmq-server
       ansible.builtin.systemd:
         state: restarted
-        name: rabbitmq-server
+        name: rabbitmq
         enabled: true
 
     - name: Adding user
