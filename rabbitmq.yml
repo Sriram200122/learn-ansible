@@ -19,7 +19,7 @@
         name: rabbitmq
         enabled: true
 
-    -name: rabbitmq_user
+    -name: Adding user and setting permissions
       user: roboshop
       password: roboshop123
       vhost: /
