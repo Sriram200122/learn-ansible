@@ -13,10 +13,10 @@
         name: rabbitmq-server
         state: latest
 
-    - name: Enabling and restarting rabbitmq Server
+    - name: Enabling and restarting rabbitmq-server
       ansible.builtin.systemd:
         state: restarted
-        name: rabbitmq
+        name: rabbitmq-server
         enabled: true
 
     - name: Adding user
