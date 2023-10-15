@@ -10,7 +10,7 @@
 
     - name: Installing rabbitmq server
       ansible.builtin.yum:
-        name: yum install rabbitmq
+        name: rabbitmq-server
         state: latest
 
     - name: Enabling and restarting rabbitmq server
@@ -19,14 +19,13 @@
         name: rabbitmq
         enabled: true
 
-    -name: Adding user and setting permissions
-      user: roboshop
-      password: roboshop123
-      vhost: /
-      configure_priv: .*
-      read_priv: .*
-      write_priv: .*
-      state: present
+    - name: Adding user
+      ansible.builtin.user:
+        name: add_user roboshop roboshop123
+
+    - name: setting permissions
+      ansible.builtin.user:
+        name: set_permissions -p / roboshop ".*" ".*" ".*"
 
 
 
