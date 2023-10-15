@@ -8,7 +8,12 @@
     - name: Downloading rabbitmq repos
       ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
-    - name: Installing RabbitMQ
+    - name: Installing Erlang
+      ansible.builtin.yum:
+        name: Erlang
+        state: installed
+
+    - name: Installing rabbitmq-server
       ansible.builtin.yum:
         name: rabbitmq-server
         state: installed
