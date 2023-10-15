@@ -19,12 +19,12 @@
         name: erlang
         state: installed
 
-    - name: Installing rabbitmq
+    - name: Installing rabbitmq-server
       ansible.builtin.yum:
-        name: rabbitmq
+        name: rabbitmq-server
         state: installed
 
-    - name: Start RabbitMQ Service
+    - name: enabling and Starting RabbitMQ Service
       ansible.builtin.systemd:
         name: rabbitmq-server
         state: restarted
