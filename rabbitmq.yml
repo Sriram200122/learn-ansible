@@ -21,7 +21,7 @@
 
     - name: Adding user
       ansible.builtin.user:
-        name: roboshop roboshop123
+        name: add_user roboshop roboshop123
 
     - name: setting permissions
       ansible.builtin.user:
