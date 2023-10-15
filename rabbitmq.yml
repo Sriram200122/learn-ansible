@@ -3,10 +3,16 @@
   become: yes
   tasks:
     - name: downloading rabbitmq repos
-      ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+      ansible.builtin.yum_repository:
+        name: rabbitmq repo
+        description: YUM repo
+        baseurl:  https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
-    - name: Downloading rabbitmq repos
-      ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+    - name: downloading rabbitmq repos
+      ansible.builtin.yum_repository:
+        name: rabbitmq repo
+        description: YUM repo
+        baseurl: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
     - name: Installing erlang
       ansible.builtin.yum:
