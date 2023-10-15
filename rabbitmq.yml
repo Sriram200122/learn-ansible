@@ -1,32 +1,31 @@
-- name: Creating rabbitmq service
-  hosts: all
-  become: yes
-  tasks:
-    - name: configuring rabbitmq repos
-      ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+- name: Configure YUm Repos
+  ansible.builtin.shell: curl -s {{ item }} |  bash
+  loop:
+    - https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh
+    - https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh
 
-    - name: Downloading rabbitmq repos
-      ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+- name: Install Erlang & RabbitMQ
+  ansible.builtin.yum:
+    name:
+      - erlang
+      - rabbitmq-server
+    state: installed
 
-    - name: Installing erlang and rabbitMQ
-      ansible.builtin.yum:
-        name:
-         - erlang
-         - rabbitmq-server
-        state: installed
+- name: Start RabbitMQ Service
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: restarted
+    enabled: yes
 
-    - name: Start RabbitMQ Service
-      ansible.builtin.systemd:
-        name: rabbitmq-server
-        state: restarted
-        enabled: yes
-
-    - name: Add Application User
-      community.rabbitmq.rabbitmq_user:
-        user: roboshop
-        password: roboshop123
-        vhost: /
-        configure_priv: .*
-        read_priv: .*
-        write_priv: .*
-        state: present
+- name: Add Application User
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator
+  vars:
+    roboshop_rabbitmq_password: "{{ lookup('aws_ssm', '{{env}}.{{component}}.AMQP_PASS', region='us-east-1' ) }}"
