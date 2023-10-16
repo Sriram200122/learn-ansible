@@ -4,7 +4,10 @@
   tasks:
     - name: Installing python Server
       ansible.builtin.yum:
-        name: yum install python36 gcc python3-devel -y
+        name:
+         - python36
+         - gcc
+         - python3-devel
         state: latest
 
     - name: Adding user
@@ -22,9 +25,11 @@
         dest: /app
         remote_src: yes
 
-    - name: Downloading dependencies
-      ansible.builtin.pip:
-        requirements: sudo pip3.6 install -r requirements.txt
+    - name: Installing Python Dependencies
+      ansible.builtin.shell: pip3.6 install -r requirements.txt
+      args:
+        chdir: /app
+
 
     - name: Configuring payment service
       ansible.builtin.copy:
