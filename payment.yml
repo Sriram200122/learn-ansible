@@ -24,7 +24,7 @@
 
     - name: Downloading dependencies
       ansible.builtin.pip:
-        name: sudo pip3.6 install -r requirements.txt --user
+        name: sudo pip3.6 install -r requirements.txt
 
     - name: Configuring payment service
       ansible.builtin.copy:
