@@ -7,7 +7,7 @@
         name:
           - python36
           - gcc
-          - python3-devel -y
+          - python3-devel
         state: latest
 
     - name: Adding user
@@ -25,10 +25,11 @@
         dest: /app
         remote_src: yes
 
-    - name: Install specified python requirements
-      ansible.builtin.pip: pip3.6 install -r requirements.txt
+    - name: Installing Dependencies
+      ansible.builtin.shell: pip3.6 install -r requirements.txt
       args:
         chdir: /app
+
 
     - name: Configuring payment service
       ansible.builtin.copy:
