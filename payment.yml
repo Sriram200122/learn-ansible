@@ -30,8 +30,6 @@
       args:
         chdir: /app
 
-
-
     - name: Configuring payment service
       ansible.builtin.copy:
         src: payment.service
