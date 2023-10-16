@@ -1,8 +1,14 @@
 - name: Downloading Erlang repos
-  ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+  ansible.builtin.yum_repository:
+    name: erlang
+    description: erlang
+    baseurl: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
-- name: Downloading Rabbitmq repos
-  ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+- name: Downloading rabbitmq repos
+  ansible.builtin.yum_repository:
+    name: rabbitmq
+    description: rabbitmq
+    baseurl:  https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 - name: Installing Rabbitmq
   ansible.builtin.yum:
