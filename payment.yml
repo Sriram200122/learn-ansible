@@ -22,7 +22,7 @@
         dest: /app
         remote_src: yes
 
-    - name: Downloading dependencies
+    - name: Install python package on version 3.6
       ansible.builtin.pip:
         name: pip3.6 install -r requirements.txt
 
